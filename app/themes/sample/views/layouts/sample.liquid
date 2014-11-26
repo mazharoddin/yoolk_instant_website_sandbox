@@ -14,6 +14,30 @@
   </div>
 
   {{ 'sample/all' | javascript_include_tag }}
+  <script type="text/javascript">
+    var elem = $("#auto-scroll");
+
+    if (elem.length) {
+      $(window).scroll(function() {
+
+        var url = elem.find("[class*='deco'] + span a").attr("href");
+        if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+          $.getScript(url, function( data, textStatus, jqxhr) {
+
+            console.log( data ); // Data returned
+            console.log( textStatus ); // Success
+            console.log( jqxhr.status ); // 200
+            console.log( "Load was performed." );
+          });
+          console.log("load");
+          elem.html("");
+        } else {
+          console.log("fail load");
+        }
+      });
+      $(window).scroll();
+    }
+  </script>
   {% yield 'map' %}
 </body>
 </html>
