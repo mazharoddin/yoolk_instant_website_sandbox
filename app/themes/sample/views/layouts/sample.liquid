@@ -14,58 +14,6 @@
   </div>
 
   {{ 'sample/all' | javascript_include_tag }}
-  <script type="text/javascript">
-    var elem = $("#auto-scroll");
-
-    if (elem.length) {
-      var lastScrollTop = 0;
-
-      $(window).scroll(function() {
-
-        var st = $(this).scrollTop();
-        if (st > lastScrollTop)
-        {
-          elem = $("#auto-scroll");
-          var url = elem.find("[class*='deco'] + span a").attr("href");
-          if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50)
-          {
-            $.ajax({
-              type: 'GET',
-              url: url,
-              beforeSend: function() {},
-              success: function(data) {
-                var result = $(data).find(".image-wrapper");
-                result.append( $("#auto-scroll") );
-
-                $(".Collage").imagesLoaded(function() {
-                  $(".Collage").removeWhitespace();
-                  $(".Collage").collagePlus({
-                    "targetHeight"        : 200,
-                    "fadeSpeed"           : 5000,
-                    "effect"              : "effect-6",
-                    "direction"           : "vertical",
-                    "allowPartialLastRow" : true
-                  });
-                });
-
-                $("#galleries").append(result);
-                if ( $("#auto-scroll").find("span[class='deco']:last-child").length ) {
-                  $('#auto-scroll').remove();
-                } else {
-                  $('#auto-scroll').replaceWith($(data).find("#auto-scroll"));
-                }
-              },
-              dataType: "html"
-           });
-          }
-        }
-
-        lastScrollTop = st;
-
-      });
-    }
-  </script>
-
   {% yield 'map' %}
 </body>
 </html>

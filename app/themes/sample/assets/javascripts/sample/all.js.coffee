@@ -11,6 +11,8 @@
 #= require imagesloaded/v3.1.8
 #= require zebra_datepicker/v1.8.9
 
+#= require sample/shared/auto_scroll
+
 # pages
 #= require sample/map/index
 #= require sample/galleries/index
