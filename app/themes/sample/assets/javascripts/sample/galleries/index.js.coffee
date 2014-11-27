@@ -4,7 +4,7 @@ $(document).ready ->
     $(".Collage").removeWhitespace()
     $(".Collage").collagePlus({
       "targetHeight"        : 200,
-      "fadeSpeed"           : 3000,
+      "fadeSpeed"           : 5000,
       "effect"              : "effect-6",
       "direction"           : "vertical",
       "allowPartialLastRow" : true
