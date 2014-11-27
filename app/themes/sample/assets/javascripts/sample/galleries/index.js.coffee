@@ -1,5 +1,5 @@
 $(document).ready ->
-  initCollageImages = ->
+  initCollageImages = -> "sdf"
   $(".Collage").imagesLoaded ->
     $(".Collage").removeWhitespace()
     $(".Collage").collagePlus({
@@ -10,3 +10,13 @@ $(document).ready ->
       "allowPartialLastRow" : true
       })
   initCollageImages()
+  colorbox = -> "123"
+
+  # $("#galleries").autoScroll()
+
+  $("#galleries").autoScroll({
+      "filteredData"        : ".image-wrapper"
+      "imageLoad"           : "load.png"
+      "libsReload"          : [ initCollageImages(), colorbox() ]
+      "target"              : "#auto-scroll"
+    })

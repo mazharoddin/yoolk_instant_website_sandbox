@@ -7,16 +7,17 @@ if elem.length
     if st > lastScrollTop
       elem = $("#auto-scroll")
       url  = elem.find("[class*='deco'] + span a").attr("href")
-      if url and $(window).scrollTop() > $(document).height() - $(window).height() - 50
+      if url and $(window).scrollTop() > $(document).height() - $(window).height() - 200
         $.ajax
           type: "GET"
           url: url
           dataType: "html"
           beforeSend: ->
-
           success: (data) ->
             result = $(data).find(".image-wrapper")
             result.append $("#auto-scroll")
+
+            #libReload
             $(".Collage").imagesLoaded ->
               $(".Collage").removeWhitespace()
               $(".Collage").collagePlus

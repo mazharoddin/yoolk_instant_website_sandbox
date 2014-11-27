@@ -11,11 +11,12 @@
 #= require imagesloaded/v3.1.8
 #= require zebra_datepicker/v1.8.9
 
-#= require sample/shared/auto_scroll
 
 # pages
 #= require sample/map/index
+#= require sample/shared/auto_scrollJS
 #= require sample/galleries/index
+# require sample/shared/auto_scroll
 #= require sample/announcements/index
 #= require sample/reservation/index
 #= require sample/about_us/index
