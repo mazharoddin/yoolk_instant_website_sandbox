@@ -16,7 +16,6 @@
 #= require sample/map/index
 #= require sample/shared/auto_scrollJS
 #= require sample/galleries/index
-# require sample/shared/auto_scroll
 #= require sample/announcements/index
 #= require sample/reservation/index
 #= require sample/about_us/index

@@ -2,7 +2,9 @@
   $.fn.autoScroll = function(options) {
 
     var settings = $.extend({}, $.fn.autoScroll.defaults, options);
-    var elem = $("#auto-scroll");
+    var elem = $(settings.target);
+
+    console.log(settings.libsReload);
 
     if (elem.length) {
       var lastScrollTop = 0;
@@ -14,7 +16,7 @@
 
           if (st > lastScrollTop)
           {
-            elem = $("#auto-scroll");
+            elem = $(settings.target);
             var url = elem.find("[class*='deco'] + span a").attr("href");
             if (ready && url && $(window).scrollTop() > $(document).height() - $(window).height() - 50)
             {
@@ -24,8 +26,8 @@
                 url: url,
                 beforeSend: function() {},
                 success: function(data) {
-                  var result = $(data).find(".image-wrapper");
-                  result.append( $("#auto-scroll") );
+                  var result = $(data).find(settings.filteredData);
+                  result.append( $(settings.target) );
 
                   $(".Collage").imagesLoaded(function() {
                     $(".Collage").removeWhitespace();
@@ -40,10 +42,10 @@
 
                   $("#galleries").append(result);
 
-                  if ( $("#auto-scroll").find("span[class='deco']:last-child").length ) {
+                  if ( $(settings.target).find("span[class='deco']:last-child").length ) {
                     $('#auto-scroll').remove();
                   } else {
-                    $('#auto-scroll').replaceWith($(data).find("#auto-scroll"));
+                    $('#auto-scroll').replaceWith($(data).find(settings.target));
                   }
                 },
                 dataType: "html"
