@@ -13,7 +13,7 @@
   "business_type": {
     "id": "1",
     "name": "Business Listing",
-    "display_order": 1
+    "display_order": 2
   },
   "country": {
     "id": "1",
@@ -1638,6 +1638,12 @@
       "day":   6,
       "open":  null,
       "closed": null
+    },
+    {
+      "id": 13,
+      "day":   1,
+      "open":   { "hour":"17", "minute":"30" },
+      "closed": { "hour":"19", "minute":"00" }
     }
   ]
 }

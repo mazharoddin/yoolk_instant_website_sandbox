@@ -19,10 +19,14 @@
       </div>
       <div class="listing-communications">
         <div class="listing-address" itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress">
+
+
+         {% comment %} <time itemprop="openingHours" datetime="Tu,Th 16:00-20:00">Tuesdays and Thursdays 4-8pm</time>{% endcomment %}
+
           <address itemprop="streetAddress">{{ listing.address }}</address>
-          {% assign today = listing.business_hours.today | first %}
+          {% comment %}{% assign today = listing.business_hours.today | first %}{% endcomment %}
           <i class="fa fa-clock-o"></i>
-          {% if today.open? %}
+          {% comment %}{% if today.open? %}
             Open
             Today
 
@@ -31,7 +35,36 @@
             {% endfor %}
           {% else %}
             Closed
-          {% endif %}
+          {% endif %}{% endcomment %}
+
+          {% assign business_hours = listing.business_hours | group_by_session %}
+
+          {% for business_hour in business_hours %}
+
+
+            {% comment %}{{ business_hour[1] | size }} 2,3,8{% endcomment %}
+
+            {% for group in business_hour[1] %}
+              {{ group.day }}
+            {% endfor %}
+
+
+            {% comment %}{{ business_hour[1] | join }}{% endcomment %}
+            {% comment %}{% for group in business_hour[1] %}
+
+            {% endfor %}{% endcomment %}
+
+            {% comment %}{% if business_hour.closed? %}
+              Closed
+            {% elsif business_hour.full_day? %}
+              24h
+            {% else %}
+              {{ business_hour.days | join: ',' }} : {{ business_hour.hour }} <br>
+
+              <time itemprop="openingHours" datetime="Tu,Th 16:00-20:00">Tuesdays and Thursdays 4-8pm</time>
+            {% endif %}{% endcomment %}
+          {% endfor %}
+
 
           <div class="listing-contact" itemscope="" itemtype="http://schema.org/ContactPoint">
             <ul class="listing-contact-list list-dotted">
